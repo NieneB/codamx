@@ -9,6 +9,13 @@
 section.has-dark-background, section.has-dark-background h1, section.has-dark-background h2, section.has-dark-background h3, section.has-dark-background h4, section.has-dark-background h5, section.has-dark-background h6 {
   color: #222; }
 
+.achtergrondje{
+   margin: 20px auto;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2); 
+  
+  }
 
 .cartiqo {
     font-family: "cartiqo", "LatoWeb", Helvetica, sans-serif;
@@ -29,27 +36,17 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 
 body {
   background:  #f9f9f9;
-  background-color: #f9f9f9;
-  background-image: url('../../backgrounds/exclusive-paper.png');
+ background-color: #ffffff;
+  background-image: url('../../img/exclusive-paper.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.patternBackground{
-    background-image: url('../../backgrounds/hexellence.png');
-    background-color: #f9f9f9;
-}
-
-.takeaway {
-    background-image: url('../../backgrounds/hexellence.png');
-    background-color: #f9f9f9;
-    padding: 15px;
-    text-align: left;
-    text-shadow: 2px 2px #636363;
-}
-
 .reveal {
   font-family: "LatoWeb", Helvetica, sans-serif;
   font-size: 30px;
   font-weight: normal;
   color: #535353; 
+
 }
 
 ::selection {
