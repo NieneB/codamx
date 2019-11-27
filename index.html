@@ -1,0 +1,1373 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Geo Visualizations for the Web</title>
+
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/webmapper_2.css">
+	<script src="https://kit.fontawesome.com/1c94892226.js"></script>
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/monokai.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<!-- Introduction -->
+			<section data-background-image="img/pip_kaart_3.png">
+				<section>
+					<h1>Geo Visualizations for the Web</h1>
+					<h3> .. beyond Google Maps ..</h3>
+					<h2></br></h2>
+					<h3>Niene Boeijen</h3>
+				</section>
+				<section>
+					<a href="https://nieneb.github.io/codam">nieneb.github.io/codam </a>
+				</section>
+				<section>
+					<h1>I am a web cartographer</h1>
+					<p class="fragment appear">I make maps</p>
+					<p class="fragment appear">online </p>
+					<p class="fragment appear"> interactive</p>
+					<p class="fragment appear">Back-end to front-end</p>
+					<p class="fragment appear">Implement all through code</p>
+				</section>
+				<section class="patternBackground">
+					<h2>Niene Boeijen </h2>
+					<div style="float:left; width:50%;">
+						<img src="https://raw.githubusercontent.com/NieneB/Webmapping_for_beginners/gh-pages/img/wur.jpg"
+							width="250px" />
+						<a class="noBackground" href="https://waag.org/en/users/niene-boeijen">
+							<img src="https://raw.githubusercontent.com/NieneB/Webmapping_for_beginners/gh-pages/img//WS_logo.jpg"
+								height="100px" />
+						</a>
+						<a class="noBackground" href="http://maptime.io">
+							<img src="https://raw.githubusercontent.com/NieneB/Webmapping_for_beginners/gh-pages/img//maptimeAMS.png"
+								height="200px" />
+						</a>
+						<a class="noBackground" href="http://webmapper.net">
+							<img src="img/logo/webmapper_logo_tekst.png" height="120px" /> </a>
+					</div>
+					<div style="float:right; width: 50%;">
+						<p style="color:#535353;">Propedeuse Art Academy</p> </br>
+						<p style="color:#535353;">MSc Geo Information Science</p></br>
+						<p style="color:#535353;">Internship Geo Web Visualization</p></br>
+						<p style="color:#535353;">Maptime Amsterdam & Utrecht</p></br>
+						<p style="color:#535353;">Web Cartographer</p>
+					</div>
+					<aside class="notes">
+						Full Stack Web Map Developer.
+					</aside>
+				</section>
+
+				<section>
+					<h1><a href="https://nieneb.nl">NieneB.nl</a></h1>
+
+					<div style="float: left; width: 50%; ">
+						<a target="blank" href="https://apps.webmapper.nl/takemeto1943/#14.5/51.76409/5.60482"><img
+								src="img/Take me to 1943 - Mozilla Firefox.png" /></a>
+						<a target="blank" href="https://nieneb.github.io/coastline_example_embed/index.html"><img
+								src="img/Test Viewer WM Cloud stack - Mozilla Firefox.png" /></a>
+					</div>
+					<div style="float: right; width: 50%">
+						<a target="blank" href="https://nieneb.github.io/blendmode_map/#14.5/51.81254/5.24574/-15.7"><img
+								src="img/blendmode.png" /></a>
+						<a target="blank" href="https://nieneb.github.io/mycelium/#13.2/52.35663/4.90706/10/58"><img
+								src="img/Kaart | Paradijs in de Polder - Mozilla Firefox.png" /></a>
+					</div>
+				</section>
+				<section>
+					<p>What is Geo data?</p>
+					<p>Getting my map to the web?</p>
+				</section>
+			</section>
+			<!-- Power of maps -->
+			<section data-background-image="img/screenshot_background.png">
+				<section>
+					<h1> Let's talk maps! </h1>
+				</section>
+				<section>
+					<blockquote>
+						<p><q>"Everything is related to everything else, but near things are more related than distant
+								things"</q></p>
+						<p>Tobler's first law of geography</p>
+					</blockquote>
+				</section>
+				<!-- <section>
+					<blockquote>
+						<p>millions of bits of information on a single page. No other method for the display of
+							statistical information is so powerful.</p>
+						<p> Edward R. Tufte</p>
+					</blockquote>
+				</section> -->
+				<section>
+					<h1>Power of Maps</h1>
+					<blockquote>
+						<p style="font-size: 80%;"><q>Our brains organize by location .. why so many relate to maps and
+								geography is that we have no
+								choice but to think and see spatially.</q></p>
+						<p><a target="blank" href="http://learn.arcgis.com/en/arcgis-book/chapter3/">Allen Carroll</a>
+						</p>
+					</blockquote>
+				</section>
+				<section>
+					<h1>Power of Maps</h1>
+					<p>Maps make sense of things</p>
+					<p>Maps lend order to complex environments </p>
+					<p>Reveal patterns and relationships</p>
+					<h1 class="fragment appear">Map = Collection of <u>Geo</u> data</h1>
+				</section>
+				<section>
+					<h1>What is <u>geo</u> data?</h1>
+				</section>
+				<section>
+					<h3><u>geo</u> data = data + location</h3>
+					<img src="img/geo/point_line_polygon.jpg" width="500" />
+					<img src="img/geo/attributes.jpg" width="500" />
+				</section>
+				<section>
+					<p>Maps allow us to communicate about location using a <h1>common framework</h1>
+					</p>
+				</section>
+				<section>
+					<h1>Coordinate system</h1>
+					<p>Communicate locations & distances on the Earth's surface</p>
+					<img src="img/geo/round_flat.jpg" width="50%">
+				</section>
+				<section>
+					<h1>Shape of the earth?</h1>
+					<img src="img/geo/geoid.jpg" width="50%" />
+					<p>The real shape of the earth is too complex to be useful as a reference for measurement..</p>
+				</section>
+				<section>
+					<h1>Geographic coordinate system</h1>
+					<img src="img/geo/geograpic_coord.jpg" width="50%" />
+					<p>3D model</p>
+					<p>Longitude Latitude</p>
+				</section>
+				<section>
+					<h4>Geographic Coordinate System:</h4>
+					<h1>WGS84 EPSG:4326 </h1>
+					<p>Lon Lat in decimal degrees</p>
+					<p>GPS</p>
+					<p>Standard way to store most geodata for the Web:</p>
+					<p><a href="http://geojson.org/">GeoJSON</a></p>
+					<pre><code>{
+"type": "Feature",
+"geometry": {
+	"type": "Point",
+	"coordinates": [5.2394137,52.0819662]
+},
+"properties": {
+	"name": "Hotel Theater Figi"
+}
+}</code></pre>
+					<aside class="notes">standardize the way we describe locations on a map
+						GeoJSON is a geospatial data interchange format based on JavaScript
+						Object Notation (JSON).
+						GeoJSON uses a geographic coordinate reference system, World Geodetic
+						System 1984, and units of decimal degrees.
+						geometry types: Point, LineString, Polygon, MultiPoint, MultiLineString, and MultiPolygon.
+					</aside>
+				</section>
+				<section>
+					<img src="img/geo/round_flat.jpg" width="50%">
+
+				</section>
+				<section>
+					<h1>Projected coordinate system</h1>
+					<img src="img/geo/projected_coord.jpg" width="50%" />
+					<p>Mathematical projection / translation</p>
+					<p>2D</p>
+				</section>
+				<section>
+					<h4>Projected Coordinate System:</h4>
+					<img src="img/geo/different_projections.jpg" width="500" />
+				</section>
+				<section>
+					<h4>Projected Coordinate System:</h4>
+					<h1>Spherical/Web Mercator EPSG:3857</h1>
+					<p>Square, scale not relevant, shapes important</p>
+					<img src="img/geo/image23.png" width="25%" />
+					<p><i>We store data in EPSG:4326, but display it in EPSG:3857!</i></p>
+					<aside class="notes">first introduced by Google and is used in almost 100% of web maps</aside>
+				</section>
+				<section>
+					<h1>Why is Mercator wrong?</h1>
+					<img src="img/geo/orange_peel.jpg" width="600" />
+					<p><a href="https://bramus.github.io/mercator-puzzle-redux/">True Size puzzle</a>
+						<a href="https://www.youtube.com/watch?v=eLqC3FNNOaI">West Wing</a></p>
+				</section>
+				<section>
+					<h4>Projected Coordinate System:</h4>
+					<h1>RD New EPSG:28992</h1>
+					<p>Netherlands!</p>
+					<img src="img/geo/rd_new.gif" width="49%" />
+					<img src="img/geo/bessel.jpg" width="40%" />
+				</section>
+				<section>
+					<img src="https://media.giphy.com/media/6KKab1ydLq1uU/giphy.gif">
+					<p>Reading materials:</p>
+					<p><a href="http://lyzidiamond.com/posts/4326-vs-3857">EPSG 4326 vs EPSG 3857</a></p>
+					<p><a
+							href="https://alastaira.wordpress.com/2011/01/23/the-google-maps-bing-maps-spherical-mercator-projection/">The
+							Google Maps spherical mercator projection</a></p>
+				</section>
+			</section>
+
+			<!-- Web maps -->
+			<section>
+				<section>
+					<h1> Getting my map to the web? </h1>
+					<img src="img/webmap/desktop_web1.jpg" width="500" />
+				</section>
+				<section>
+					<table style="color: #535353;">
+						<tr>
+							<th>Analogue paper maps</th>
+							<th>Digital maps</th>
+							<th>Web Maps</th>
+						</tr>
+						<tr>
+							<td></td>
+							<td>Data</td>
+							<td>Tiles, styles and servers </td>
+						</tr>
+						<tr>
+							<td>Print </td>
+							<td>On the computer </td>
+							<td>View in a browser </td>
+						</tr>
+						<tr>
+							<td>Hold and fold</td>
+							<td>Calculate, analyze</td>
+							<td>Scroll, pan, zoom</td>
+						</tr>
+					</table>
+					<img src="img/webmap/webmapping_4_steps.jpg">
+				</section>
+
+
+
+				<section data-background="img/universe/web_map_universe.png" data-background-size="80%">
+				</section>
+				<section>
+					<ul>
+						<li>Static & Dynamic map</li>
+						<li>Web GIS application with analytical tools</li>
+						<li>Animated, real time, data driven</li>
+						<li>Download</li>
+						<li>Infographic, image, video, gif </li>
+					</ul>
+					</br>
+					<h4>user driven or maker driven?</h4>
+				</section>
+				<section>
+					<img src="img/webmap/desktop_web1.jpg" />
+				</section>
+				<section data-background="img/universe/web_map_universe_data.png" data-background-size="80%">
+				</section>
+				<section data-background="img/universe/web_map_universe_data_hosting.png" data-background-size="80%">
+				</section>
+				<section data-background="img/universe/web_map_universe_data_hosting_design.png" data-background-size="80%">
+				</section>
+
+				<section data-background="img/universe/web_map_universe_data_hosting_design_code_all.png"
+					data-background-size="80%">
+					<aside class="notes"> Ben niet bang. Het belangrijkste is dat je alles een keer hoort. Mocht je het
+						ooit tegen komen
+						dan weet je nu sneller waar je moet zoeken.</aside>
+				</section>
+				<section>
+					<img src="https://media.giphy.com/media/YR2QxyyVR6byo/giphy.gif" />
+				</section>
+				<section>
+					<img src="img/inspiratie/muur.png" width="600" />
+				</section>
+
+				<section>
+					<div style="float: left; width:50%;">
+						<h3> <a href="https://www.opengeospatial.org/">Open Geospatial Consortium </a> - OGC standards
+						</h3>
+
+						<ul>
+							<li>WMS Web Map Service</li>
+							<li>WMTS Web Map Tile Service</li>
+							<li>WFS Web Feature Service</li>
+						</ul>
+					</div>
+					<div style="float: left; width:50%;">
+						<h3>Defacto - Community standard </h3>
+						</br>
+						<ul>
+							<li> <a href="https://developers.google.com/maps/documentation/javascript/coordinates">Google/OSM
+									(XYZ)</a></li>
+							<li>TMS Tile Map Service</li>
+							<li>QuadTrees (microsoft)</li>
+						</ul>
+					</div>
+					<!-- https://developers.google.com/maps/documentation/javascript/coordinates -->
+				</section>
+			</section>
+			<section>
+				<section data-background-image="img/cartiqo_topo.png">
+					<h1>Tiled web map</h1>
+				</section>
+
+				<section data-background="img/webmap/googlecodam.png">
+					<h2><a href="google.com/maps">google.com/maps</a></h2>
+				</section>
+				<section data-background="img/webmap/osm2.png">
+					<h2><a href="openstreetmap.org">openstreetmap.org</a></h2>
+				</section>
+				<section>
+					<h1>a little History</h1>
+					<div style="float:left; width:50%">
+						<p>Digital maps</p>
+						<p>GIS software</p>
+						<p>GIS on the Web is not user friendly.. </p>
+						<p>1996 Mapquest first with a web service! </p>
+					</div>
+					<img src="img/webmap/mapquest.jpeg" style="float:right; width:50%">
+				</section>
+				<section>
+					<h3>But really slow to load..,</h3>
+					<p>in 2004 Endoxon found a way for quick online mapping! </p><p><a href="http://map.search.ch">map.search.ch</a></p>
+					<p>2005 Google Maps took over!</p>
+					<p> The solution?</p>
+					<h1 class="fragment grow">Tiles! </h1>
+				</section>
+				<section data-background="img/webmap/tiles-loading.gif">
+					<h1>Tiles</h1>
+					<p>All tiles size 256x256 pixels </p>
+					<p>Placed in a grid, sharing boundaries </p>
+					<p> Seamless map </p>
+					<p>Slippy maps, Google/OSM (XYZ) - TMS - QuadTrees (Microsoft)</p>
+					<p class="fragment grow">All these little tiles load way faster than one big map!</p>
+				</section>
+				<section>
+					<h1>Zoom levels</h1>
+					<p>Each zoom level has its own set of tiles!</p>
+					<div style="float:right; width:50%">
+						<p>Zoom level 0: 1 tile for the whole world.</p>
+						<p>Increases exponentially...</p>
+						<p>Zoom level 1: 4 tiles</p>
+						<p>Zoom level 2: 16 tiles</p>
+						<p> etc. </p>
+					</div>
+					<img src="img/webmap/training-tiling.png" style="float:left; width:50%">
+					<a href="http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/"> Map with tile
+						bounds</a>
+				</section>
+				<section>
+					<img src="img/webmap/tile_zoom.png" />
+				</section>
+				<section>
+					<h1>Serving tiles</h1>
+					<div style="float: left; width: 50%">
+						<p>Tiles are just images on the web</p>
+						<p><a href="http://tile.openstreetmap.org/5/16/10.png">http://tile.openstreetmap.org/5/16/10.png</a>
+						</p>
+						<p>/z/x/y</p> 
+						<code> https://{s}.tile.osm.org/{z}/{x}/{y}.png</code>
+					</div>
+					<div style="float: right; width: 50%">
+						<img src="img/webmap/tiles.gif">
+					</div>
+				</section>
+				<section>
+					<p>Tiles are styled and rendered in advance</p>
+					<img src="img/webmap/tile_creation.png" width="50%">
+				</section>
+				<section>
+					<h1> Styling tiles</h1>
+					<p> styling per zoom level </p>
+					<p>Lot's and lot's of geo data! </p>
+					<p> <a href="https://mapserver.org/ogc/sld.html">SLD</a> & Mapfile styling.. </p>
+					<pre><code><?xml version="1.0" encoding="UTF-8"?>
+<StyledLayerDescriptor version="1.0.0" xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc"
+xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/sld
+http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd">
+<NamedLayer>
+	<Name>country_bounds</Name>
+	<UserStyle>
+		<Title>xxx</Title>
+		<FeatureTypeStyle>
+			<Rule>
+				<LineSymbolizer>
+					<Geometry>
+						<ogc:PropertyName>center-line</ogc:PropertyName>
+					</Geometry>
+					<Stroke>
+						<CssParameter name="stroke">#0000ff</CssParameter>
+					</Stroke>
+				</LineSymbolizer>
+			</Rule>
+		</FeatureTypeStyle>
+	</UserStyle>
+</NamedLayer>
+</StyledLayerDescriptor>
+</code>
+</pre>
+				</section>
+
+				<section data-background-iframe="img/bgt/bgt.map"></section>
+				<section data-background-image="img/amsterdam_topo.png">
+				</section>
+				<section data-background-image="img/amsterdam_grijs_2.png">
+				</section>
+				<section data-background-image="img/amsterdam_licht.png">
+				</section>
+				<!-- <section>
+					<img src="img/webmap/web_map_building_blocks.png">
+				</section> -->
+				<section>
+					<h1>Disadvantages Raster Tiles</h1>
+					<p>No interaction with objects</p>
+					<p>No information available about objects</p>
+					<p>Multiple visualizations = multiple tile sets</p>
+				</section>
+
+			</section>
+			<!-- VECTOR -->
+			<section data-background="img/Screenshot_background2.png">
+				<section>
+					<h1>Vector Tiles</h1>
+					<p> the newest technology!</p>
+				</section>
+				<section>
+					<h1>From Raster to Vector</h1>
+					<img src="img/webmap/map-tiles-2-w800.png" />
+				</section>
+
+				<section>
+					<h1>Vector Tile</h1>
+					<div style="float:left; width:50%;">
+						<img src="https://mapzen.com/resources/projects/vector-tiles/square-of-math.gif">
+					</div>
+					<div style="float:right; width:50%">
+						<p> Arrays in a 256 x 256 matrix</p>
+						<p> Same tiling schema as Raster png tiles.</p>
+						<p> Binary format</p>
+						<p> No colours</p>
+						<p> Simplifies geometries</p>
+					</div>
+				</section>
+				<section>
+					<img src="img/webmap/vector_tile_creation.png" />
+				</section>
+				<section>
+					<h1 >Advantages Vector tiles</h1>
+					<p > Rendering is done on client side less pressure on the server</p>
+					<p > Custom styles on client side</p>
+					<p > Small tile size. Fast</p>
+					<p > High resolution.</p>
+					<p > Direct access to feature information.</p>
+				</section>
+				<section>
+					<h1>WebGL</h1>
+					<p>the rendering happens in your browser with the help of your device's graphics processing unit (GPU). </p>
+					<p>+ rotating and tilting the map (3D)</p>
+					<p>	+ smooth/infinite zooming</p>
+					<p>WebGL is widely supported in modern browsers</p>
+				</section>
+				<section>
+					<img src="img/datalab_vector_tiles.gif"/>
+				</section>
+				<section>
+					<div style="float:left; width:50%">
+						<h4>raster tiles</h4>
+						<img src="img/pdok_raster.gif">
+					</div>
+					<div style="float:right; width:50%">
+						<h4>vector tiles</h4>
+						<img src="img/pdok_vector.gif">
+					</div>
+				</section>
+				<section>
+					<img src="img/webmap/tiles_styles_sprites_glyphs.png">
+				</section>
+
+				<section>
+					<h1> style.json</h1>
+					<pre><code data-trim data-noescape>
+{ 
+	"version": 8, 
+	"name": "Mijn eigen Stijl", 
+	"sprite": "url", 
+	"glyphs": "url/{fontstack}/{range}.pbf", 
+	"sources": {...}, 
+	"layers": [
+	{ 
+		"id": "background", 
+		"type": "background", 
+		"paint": { "background-color":"#FFFFFF" } 
+	},
+	{...}
+	] 
+}
+</code></pre>
+				</section>
+
+
+				<section>
+					<h1>Interactive with JavaScript!</h1>
+					<img src="img/font_size.gif"/>
+				</section>
+								<section data-background-image="img/achtergrondje.png">
+									<p><a href="https://apps.webmapper.nl/bag_3D/#15/52.09099/5.12218/-58.4/60">apps.webmapper.nl/bag_3D</a></p>
+								</section>
+								<section data-background-image="img/bag_3d_amsterdam.png">
+								</section>
+				<section>
+					<img src="img/blendmodemap_2.gif"/>
+														<p><a href="https://nieneb.github.io/blendmode_map/#14.5/51.81254/5.24574/-15.7">nieneb.github.io/blendmode_map/</a></p>
+
+				</section>
+				<section>
+				<img src="img/Rorchach.gif"/>
+												<p><a href="https://apps.webmapper.nl/rorschach/#7/52.433/4.848/-80.8/7">apps.webmapper.nl/rorschach</a></p>
+</section>
+				<!-- <section>
+					<h1>Standards</h1>
+					<a href="https://www.mapbox.com/vector-tiles/specification/">Mapbox Vector Tile Standard. </a>
+					<p>Based on the binary protocal buffer (.pbf) from Google.</p>
+					<p><a href="https://www.mapbox.com/blog/vector-tile-adoption/">Standard already used by
+							Esri.</a></p>
+					<p>Web Mercator projection, Google tiling scheme.</p>
+					<h1>Formats</h1>
+					<p>.mvt - .pbf</p>
+					<p>.mbtiles</p>
+				</section>
+				<section>
+					<h1>Want to know more?</h1>
+					<p>About <a href="https://docs.mapbox.com/vector-tiles/reference/">Vector-tiles</a> from Mapbox
+					</p>
+					<p><a href="https://docs.mapbox.com/mapbox-gl-js/api/">MapboxGL.js</a></p>
+					<p><a href="https://openmaptiles.org/">Open map tiles</a> alternative</p>
+					<p><a href="https://cartiqo.nl">Cartiqo</a> our own alternative</p>
+					<p class="cartiqo">cartiqo</p>
+				</section> -->
+			</section>
+			<!-- GENERAL MAKING MAPS -->
+			<section data-background="img/Screenshot5.png">
+				<section>
+					<h1>So how do you get a web map in the fron-end?</h1>
+				</section>
+				<section>
+					<h1>JavaScript</h1>
+					<p>puts it all togehter</p>
+					<p>tiles, content, interaction</p>
+				</section>
+					<section>
+						<img src="img/webmap/web_map_building_blocks.png" height=" 50%">
+					</section>
+				<section>
+					<h2>a map is a lot! </h2>
+					<ul>
+						<li>Map Interface and Interaction</li>
+						<li>Zoom, panning, clicking etc.</li>
+						<li>Map events</li>
+						<li>popups markers</li>
+						<li>Tiles (raster/vector) as Base Layer</li>
+						<li>Additional Data <ul>
+								<li>File (GeoJSON)</li>
+								<li>WMS,WFS</li>
+								<li>Tiles</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+			
+				<section>
+					<h1 style="font-size: 80%;">JavaScript Libraries for Mapping</h1>
+					<p><a href="https://openlayers.org/">OpenLayers</a>
+						<p><a href="http://leafletjs.com/">Leaflet.js</a></p>
+						<p><a href="https://d3js.org/">D3.js</a></p>
+						<p><a href="">Turf.js</a></p>
+						<p> <a href="https://developers.arcgis.com/javascript/">ArcGIS Javascript API</a></p>
+						<p><a href="https://www.mapbox.com/mapbox.js/api/v3.1.1/">MapboxGL.js</a></p>
+						<p> <a href="https://github.com/tangrams/tangram">Tangram</a></p>
+						<p> <a href="https://carto.com">CARTO</a></p>
+						<p><a href="https://developer.here.com/develop/javascript-api">HERE Maps</a></p>
+						<p><a href="https://developers.google.com/maps/documentation/javascript/">Google Maps
+								API</a>
+						</p>
+				</section>
+				<!-- <section>
+					<h1>Vector tiles</h1>
+					<p><a href="https://www.mapbox.com/mapbox-gl-js/api/">MapboxGL.js</a></p>
+					<p><a href="https://openlayers.org/en/latest/examples/osm-vector-tiles.html">OpenLayers 3</a> --
+						<a href="http://leafletjs.com/plugins.html#vector-tiles">Leaflet</a>several plugins available
+					</p>
+					<p><a
+							href="https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-VectorTileLayer.html">ArcGIS
+							API for JavaScript</a></p>
+					<p>Mapzen <a href="https://github.com/tangrams/tangram">Tangram</a></p>
+				</section> -->
+				<!-- <section>
+					<p> Let's look at Leaflet for Raster tile maps</p>
+					<p> and MapboxGL.js for Vector Tile maps </p>
+					<p> Both in the workshop!</p>
+				</section> -->
+				<section>
+					<p>When to use what?! </p>
+					<img src="https://media.giphy.com/media/142na7ROkljwKA/giphy.gif" width="500" />
+					<!-- <img src="https://media.giphy.com/media/xT0xeBA6roXgqpDxVm/giphy.gif" width="300" /> -->
+				</section>
+				<section>
+
+					<p class="fragment appear"><a href="https://d3js.org/">D3.js</a> for data driven info graphics</p>
+					<p class="fragment appear"><a href="">Turf.js</a> for geospatial computation in the browser</p>
+					<p class="fragment appear"><a href="http://leafletjs.com/">Leaflet.js</a> for simple light weight raster web maps</p>
+					<p class="fragment appear"><a href="https://openlayers.org/">OpenLayers</a> for more elaborate raster web map with more functionality
+					</p>
+					<p class="fragment appear"> <a href="https://developers.arcgis.com/javascript/">ArcGIS Javascript API</a> if your client uses ESRI
+						software</p>
+
+					<p class="fragment appear"><a href="https://www.mapbox.com/mapbox.js/api/v3.1.1/">MapboxGL.js</a> for vector tiles</p>
+					<p class="fragment appear"> <a href="https://github.com/tangrams/tangram">Tangram</a> for vector tiles</p>
+
+					<p class="fragment appear"> <a href="https://carto.com">CARTO</a> and Mapbox for cloud solutions</p>
+					<p class="fragment appear"><a href="https://developer.here.com/develop/javascript-api">HERE Maps</a> and  <a href="https://developers.google.com/maps/documentation/javascript/">Google Maps
+							API</a> for navigation, google services and commercial goals</p>
+				</section>
+							<section>
+								<h1>Main considerations</h1>
+					<p>Open source vs closed source</p>
+					<p> Mobile vs desktop</p>
+					<p> Raster vs Vector </p>
+					<p> Amount of Interactivity or GIS functionality</p>
+					<p> Amount of data to show</p>
+				</section>
+				<section>
+					<p> Let's have a quick look at Leaflet for Raster tile maps</p>
+					<p>  MapboxGL.js for Vector Tile maps </p>
+					<p> D3.js for static maps</p>
+				</section>
+				<!-- RASTER TILES AND LEAFLET -->
+				<section>
+					<h1>Leaflet.js</h1>
+				</section>
+				<section>
+					<a target="blank" href="http://leafletjs.com"><img src="img/logo/leaflet-logo.png"/></a>
+					<p>An Open-Source JavaScript Library for Mobile-Friendly Interactive Maps</p>
+					<blockquote> simplicity, performance and usability </blockquote>
+				</section>
+				<section>
+					<p>Developed by: <a href="http://agafonkin.com/en/">Vladimir Agafonkin.</a></p>
+					<p>Weighing about 38 KB of JS. </p>
+					<p>Has all the mapping features most developers ever need.</p>
+					<p>Can be extended with <a href="http://leafletjs.com/plugins.html">Plugins</a></p>
+					<p>Well <a href="http://leafletjs.com/reference-1.2.0.html">documented</a></p>
+				</section>
+				<section>
+					<h1>What Leaflet does not do:</h1>
+					<p>Provide data for you.</p>
+					<p>Provide the basemap.</p>
+					<p>Its not GIS</p>
+					<p>Leaflet is a framework </p>
+				</section>
+				<section>
+					<h1>Layers</h1>
+					<div style="float: left; width: 50%;">
+						<p>Base Layer</p>
+						<p>Raster</p>
+						<img src="img/webmap/raster.png" width="500px">
+					</div>
+					<div style="float: right; width: 50%;">
+						<p>Data Layer / Feature Layer</p>
+						<p>Vector</p>
+						<img src=" img/webmap/vector_types.png" width="500px" />
+					</div>
+				</section>
+				<section>
+					<h1> Raster tile base map providers</h1>
+					<p> <a target="blank" href="http://leaflet-extras.github.io/leaflet-providers/preview/"> Overview
+							Leaflet
+							providers</a> </p>
+					<p> <a target="blank"
+							href="https://www.pdok.nl/introductie/-/article/basisregistratie-topografie-achtergrondkaarten-brt-a-">PDOK
+							Basemaps</a></p>
+					<img src="img/webmap/raster.png" width="500px">
+				</section>
+				<!-- <section>
+					<img src="img/logo/pdok.jpg" width="500" />
+					<a href="https://www.pdok.nl/">PDOK.nl</a>
+				</section> -->
+				<section>
+					<pre><code data-trim data-noescape>
+				let map = L.map('map').setView([51.505, -0.09], 13);
+				
+				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+					attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+				}).addTo(map);
+				</code></pre>
+				</section>
+				<section>
+					<h1>Adding data layers</h1>
+					<p>WMS, WFS (slow)</p>
+					<p>GeoJSON</p>
+
+					<pre><code>
+				let marker = L.marker([52.372825, 4.900321]).addTo(map);
+				
+				// ADD a WMS layer
+				let cbs = L.tileLayer.wms('https://geodata.nationaalgeoregister.nl/wijkenbuurten2018/wms', {
+					'layers': 'cbs_buurten_2018',
+					'styles': 'wijkenbuurten2018:wijkenbuurten_thema_buurten_gemeentewijkbuurt_percentage_eenpersoonshuishoudens',
+					'srs': 'EPSG:28992',
+					'format': 'image/png',
+					'transparent': true,
+					'opacity': 0.5
+				}).addTo(map);
+				</code></pre>
+				</section>
+				<section>
+					<h1>Projections</h1>
+					<p><a href="https://kartena.github.io/Proj4Leaflet/">Proj4Leaflet</a></p>
+					<p><a href="http://proj4js.org/">Proj4js</a></p>
+					<p> Use EPSG:28992 > Government in Netherlands obliged to use it! </p>
+				</section>
+				<!-- Mapbox GL JS-->
+				<section>
+					<h1>MapboxGL.js</h1>
+										<img src="img/mapbox.png" width="800">
+
+				</section>
+
+				<section >
+					<p>Developed by:</p>
+					<img src="https://cdn-images-1.medium.com/max/1600/0*ok6yuDnTx4o2PSFx.png" width="500">
+				
+							<p><a href="https://www.mapbox.com/mapbox-gl-js/api/">mapbox-gl-js api</a></p>
+					
+							<p><a href="https://www.mapbox.com/mapbox-gl-js/style-spec">mapbox style spec</a></p>
+					
+				</section>
+				<!-- <section>
+					<img src="img/webmap/vector_tile_creation.png">
+				</section> -->
+				<section>
+					<img src="img/webmap/tiles_styles_sprites_glyphs.png">
+				</section>
+
+				<section>
+					<pre><code data-trim data-noescape> 
+								            mapboxgl.accessToken = 'yourowntoken';
+								            var map = new mapboxgl.Map({
+								              container: 'map-container',
+								              style: 'style.json',
+								              hash: true, 
+								              zoom: 11, 
+								              pitch: 60, 
+								              bearing: 62.4,
+								              center: [ 4.8, 52.4] 
+								            });
+								          </code></pre>
+				</section>
+				<section>
+					<h1> style.json</h1>
+					<pre><code data-trim data-noescape>
+								            { 
+								              "version": 8, 
+								              "name": "Mijn eigen Stijl", 
+								              "sprite": "url", 
+								              "glyphs": "url/{fontstack}/{range}.pbf", 
+								              "sources": {...}, 
+								              "layers": [
+								              { 
+								                "id": "background", 
+								                "type": "background", 
+								                "paint": { "background-color":"#FFFFFF" } 
+								              },
+								              {...}
+								              ] 
+								            }
+								          </code></pre>
+				</section>
+				<section>
+					<h1>Layers or layers ??? </h1>
+					<p>Source</p>
+					<p>Data layers in tile</p>
+					<p>Style layer</p>
+					<p>Leaflet every source is a layer</p>
+					<div style="float: left; height:300px;">
+						<img src="https://media.giphy.com/media/3o7TKotoInxXzk7Oq4/giphy.gif" />
+					</div>
+					<div style="float: right; height:300px;">
+						<img src="img/geo/elevation_map.jpg" />
+					</div>
+				</section>
+				<section>
+					<h1>Vector Tile providers</h1>
+					<ul>
+						<li><a href="https://www.mapbox.com">Mapbox </a></li>
+						<li><a href="https://maptiler.nl/">Maptiler </a></li>
+						<li> <a href="https://www.ordnancesurvey.co.uk/business-government/products/open-zoomstack">OpenZoomStack </a></li>
+						<li> <a href="https://enterprise.arcgis.com/en/server/latest/publish-services/windows/vector-tile-services.htm">ESRI </a></li>
+						<li><a href="https://cartiqo.nl">Cartiqo</a></li>
+						<li>PDOK? ..  </li>
+					</ul>
+				</section>
+				<section>
+					<h1> Use MapboxGL.js for</h1>
+					<p>Customized background maps</p>
+					<p> Interactive data </p>
+					<p>WebGL rendering</p>
+				</section>
+				<!-- <section>
+					<p>Use without token requires own source data!</p>
+				</section> -->
+				<!-- <section>
+					<h1>Generators</h1>
+					<div style="float:left; width:50%;">
+						<img src="http://erictheise.com/geostack-deck/images/Map-nik-cake-osm-7.png">
+					</div>
+					<div style="float:right; width:50%;">
+						<p><a href="http://tegola.io/">Tegola </a></p>
+						<p><a href="https://github.com/mapbox/tippecanoe">TippeCanoe</a></p>
+						<p><a href="http://docs.geoserver.org/latest/en/user/extensions/vectortiles/tutorial.html">GeoServer
+							</a></p>
+						<p> <a href="https://github.com/pka/t-rex">T-rex</a></p>
+						<p><a href="http://postgis.net/docs//ST_AsMVT.html">PostGIS MVT</a></p>
+						<p><a href="https://github.com/mapbox/awesome-vector-tiles">More </a> command line tools</p>
+					</div>
+				</section> -->
+				<!-- <section data-background-image="img/cartiqoBack.png">
+					<p style="color: #eeeeec;" class="cartiqo">cartiqo</p>
+					<img src="img/logo/cartiqo-circle.png" width="100" />
+					<p style="color: #eeeeec;">Vector Tiles of the Netherlands</p>
+					<p style="color: #eeeeec;">Based on Dutch Open Geo data & OSM</p>
+				</section>
+
+				<section data-background-image="img/cartiqoBack.png">
+					<p style=" font-size: 50px; color: #eeeeec">Consistent</p>
+					<p class="fragment slide-up" style=" font-size: 50px; color: #eeeeec">Accurate</p>
+					<p class="fragment slide-up" style=" font-size: 50px; color: #eeeeec">Simple</p>
+					<p class="fragment slide-up" style=" font-size: 50px; color: #eeeeec">Fast</p>
+				</section>
+				<section data-background-image="img/cartiqoBack.png" style="color: #eeeeec;">
+					<p style="color: #eeeeec;">Easy understandable layers and naming</p>
+					<p style="color: #eeeeec;">Uniform throughout all zoom levels and source data</p>
+					<p style="color: #eeeeec;"><a href="https://cartiqo.nl">cartiqo.nl</a></p>
+					<p style="color: #eeeeec;"><a href="https://github.com/webmapper/cartiqo-documentation">Documentation </a></p>
+				</section>
+				<section data-background-image="img/cartiqoBack.png">
+					<p style=" font-size: 50px; color: #eeeeec">Developed by Webmapper</p>
+					<p style=" font-size: 50px; color: #eeeeec">Hosted on <a href="https://maptiler.nl/">Maptiler.nl</a>
+					</p>
+				</section> -->
+
+				<section>
+					<h1>D3.js</h1>
+					<a href="https://d3js.org/"><img src="/img/logo/d3-logo.png"></a>
+					<p>Data Driven Documents</p>
+					<p>A JavaScript library for manipulating documents based on data</p>
+					<blockquote>D3 helps you bring data to life using HTML, SVG, and CSS.</blockquote>
+					<code></code>
+				</section>
+				<section>
+					<p>Developed by <a href="https://bost.ocks.org/mike/">Mike Bostock</a></p>
+					<p>Allows you to bind data to the DOM and apply data-driven transformations to the document</p>
+					<p>HTML, SVG, and CSS</p>
+					<p>Fast</p>
+					<p>supports large datasets</p>
+					<p>Dynamic, interaction, animation</p>
+				</section>
+				<section>
+					<h1>SVG</h1>
+					<div style="float: left; width: 50%">
+						<p>Text-based, mathematical representation of an image. </p>
+						<p>Vector Graphics</p>
+						<p>Can be searched, indexed, scripted, and compressed! </p>
+					</div>
+					<div style="float: right; width: 50%">
+						<img src="https://raw.githubusercontent.com/wiki/NieneB/Webmapping_for_beginners/img/Bitmap_VS_SVG.png">
+					</div>
+				</section>
+				<section>
+					<h1>D3 is NOT</h1>
+					<p>a slippy map creator</p>
+					<p> Not based on tiles!!</p>
+					<h2 class="fragment fade-in">Mostly used for:</h2>
+					<p class="fragment fade-in">Charts (pie, line), Tables, Maps, Networks, animation &
+						interactivity
+					</p>
+				</section>
+				<section>
+					<h1>Use D3.js for</h1>
+					<p>Interactive graphic map representations</p>
+					<p>Different coordinate systems and projections </p> 
+				</section>
+				<section>
+					<h4>From real-world to screen coordinates</h4>
+					
+					<h1 class="fragment grow"><a href="https://github.com/d3/d3-geo">d3.geoPath</a></h1>
+					<p> Using <a href="https://geojson.org">GeoJSON</a> or <a href="https://github.com/topojson">TopoJSON</a> files </p>
+				</section>
+				<!-- <section>
+					<h1>Gimme the code!</h1>
+					<pre><code><script src="https://d3js.org/d3.v5.min.js"></script></code></pre>
+				</section>
+				<section>
+					<h1>How does it work?</h1>
+					<h2>Selections</h2>
+					<p>Selecting elements by : </p>
+					<p>[.Class #Id Type]</p>
+					<pre><code>
+				d3.selectAll("p").style("color", "white");
+				d3.select("body").style("background-color", "black");
+										</code></pre>
+				</section>
+				<section>
+					<h2>Data </h2>
+					<p><b>Styles:</b> transparency, color, size, borders</p>
+					<pre><code>d3.selectAll("p").style("color", "white");</code></pre>
+					<p><b>Attributes:</b> classes, id, interactive behavior</p>
+					<pre><code>d3.selectAll(".small").atr("class", "big");</code></pre>
+					<p><b>Properties:</b> state, true/false</p>
+					<p><b>Transitions:</b> animation, delay, transformation</p>
+
+				</section>
+				<section>
+					<h1>Dynamic properties</h1>
+					<pre><code>
+				d3.selectAll("p").style("color", function() {
+					return "hsl(" + Math.random() * 360 + ",100%,50%)";
+				});</code></pre>
+					<h1>Transition</h1>
+					<pre><code>
+				d3.selectAll("circle").transition()
+					.duration(750)
+					.delay(function(d, i) { return i * 10; })
+					.attr("r", function(d) { return Math.sqrt(d * scale); });</code></pre>
+				</section> -->
+				<section>
+					<h1>Examples</h1>
+					<a href="https://github.com/mbostock/d3/wiki/Gallery"> gallery</a>
+				</section>
+				<!-- 
+				<section>
+					<h4>Geo data = big data?</h4>
+					<p>The solution?</p>
+					<h1 class="fragment grow"><a href="https://github.com/topojson">TopoJSON</a></h1>
+					<img src="presentation/img/topology.jpg" width="50%">
+				</section>
+				<section>
+					<h4>More geo data = bigger data?</h4>
+					<p>The solution</p>
+					<h1 class="fragment grow"><a href="https://github.com/d3/d3-queue">d3.queue</a></h1>
+				</section>
+				THE WORKSHOP -->
+				<section data-background="img/screenshot_background.png">
+					<h1> Feel like trying? >> </h1>
+					<h4><a href="https://github.com/NieneB/webmapping_for_developers">github.com/NieneB/webmapping_for_developers</a></h4>
+					<h4><a href="https://github.com/NieneB/webmapping_for_beginners_v2">github.com/NieneB/webmapping_for_beginners_v2</a></h4>
+				</section>
+			</section>
+			<!-- <section>
+				<section>
+					<h1> What I make with Vector tiles</h1>
+					<p class="fragment appear">Code in text editor</p>
+					<p class="fragment appear">Cartiqo for quick vector tiles & easy styling</p>
+					<p class="fragment appear">Javascript for extra random/interactivity</p>
+				</section>
+				<section>
+
+				</section>
+			</section> -->
+			<!-- Beautifull maps vs lying with maps -->
+			<!-- Why important to know? -->
+			<section data-background-image="img/achtergrond_coastlines.png">
+				<section>
+					<h1>Maps are everywhere these days...</h1>
+					<img src="https://media.giphy.com/media/m9Vsxp3Pbk0Bq/giphy.gif" width="450" />
+					<p> <a href="https://www.citylab.com/design/2015/06/when-maps-lie/396761/"> citylab</a></p>
+				</section>
+				<!-- <section>
+					<p>Maps are no longer flat, static and on paper, but active interfaces, interactive and online!</p>
+				</section> -->
+					<section
+						data-background="http://blogs.discovermagazine.com/citizen-science-salon/files/2015/10/shutterstock_260023832.jpg">
+						<blockquote>
+							"There has never been more open data available than at this moment in time, and everyone from
+							global NGOs to armchair hobbyists are using that data to create maps. "
+							<p><a href="https://nextcity.org/features/view/the-new-cartographers">The new cartographers,
+									Next City</a></p>
+						</blockquote>
+					</section>
+				<section>
+					<blockquote>
+						<p>Vibrant. Dynamic. Responsive. Intelligent. We no longer have the static images, the
+							paper-under-glass we used to have. Instead, today’s maps feel like living, breathing things
+							– highlighting everything related to our taps
+							and inputs, and dimming and de-emphasizing everything that isn’t.</p>
+						<a href=https://www.justinobeirne.com/autonomous-vehicle-cartography#part-1> the age of the autonomous
+							vehicle </a> </blockquote> </section> <section>
+							<blockquote>
+								<p>"The realization of the interactive map as an experience, not just a map design."</p>
+								<p> <a href="https://www.slideshare.net/jatorre/siglibre-english-17036935">GIS is dead,
+										long
+										live to
+										GIS! - Javier de la Torre</a></p>
+							</blockquote>
+				</section>
+				<section>
+					<h1>New techniques = new challenges</h1>
+					<p>the cartographer</p>
+					<p>the developer</p>
+					<p><a href="https://maps4news.com/us/blog/cartography-change-technology/">maps4news</a></p>
+				</section>
+				<!-- <section>
+					Map as an interactive expeience.
+				</section> -->
+
+				<section>
+					<h1>Web Mapping</h1>
+					<ul>
+						<li>speed and scalability</li>
+						<li>Data-driven</li>
+						<li>Responsive designs</li>
+						<li>Personalised</li>
+					</ul>
+					</br>
+				</section>
+				<!-- <section>
+					<blockquote>
+						we no longer go to maps to find out where we are. Instead, we tell maps where we are and they
+						form
+						around us on the fly"
+						<p><a href="https://inthesetimes.com/article/3524/the_new_cartographers/">The new cartographers,
+								InTheseTimes</a></p>
+					</blockquote>
+				</section> -->
+				<section>
+					<img
+						src="https://static1.squarespace.com/static/54ff63f0e4b0bafce6932642/t/590746f8bebafb1fcb54b141/1492188776597/?format=750w">
+				</section>
+				<section>
+					<h4>The Universal Map</h4>
+					<blockquote>
+						<p>How long until most of the world is using the same map?</p>
+						<a href="https://www.justinobeirne.com/the-universal-map"> the Universial map - Justin
+							oBeirne</a>
+					</blockquote>
+				</section>
+				<!-- https://www.sciencemag.org/careers/2013/03/new-cartographers -->
+				<section>
+					<p>Cartography is the new code.</p>
+					<img src="img/inspiratie/cool_carthography.png">
+					<p>
+						<a href="https://www.wired.com/story/mapping-the-future-cartography-stages-a-comeback/"> Mapping the
+							Future - Wired</a></p>
+				</section>
+
+
+
+
+
+			
+				<section data-background="./reveal_js/img/achtergrondje.png">
+					<blockquote>
+						<p>Cartography is not a niche anymore it has become main stream </p>
+						<ul>
+							<li>Big data</li>
+							<li>Mass consumption</li>
+							<li>Open source software</li>
+							<li>Open data</li>
+						</ul>
+						<p> <a href="https://www.slideshare.net/jatorre/siglibre-english-17036935">GIS is dead, long
+								live to GIS! - Javier de la Torre</a></p>
+					</blockquote>
+					<aside class="notes">
+						maar onderdeel vna iets groters </br>
+						Geo is overal. Elke dataset bevat wel geo. Elke ontwikkelaar werkt er wel eens mee zonder het te
+						beseffen.
+						</br>
+						Mass consumption > iedereen maakt kaarten en wil verhalen vertellen met kaarten. Zie in kranten,
+						nieuws etc.
+						Tegenwoordig
+						zijn kaarten ontzettend populair. iedereen kent kaarten en snapt het. Google maps is main
+						stream. Design is
+						belangrijk!
+						</br>
+						Meer tools en data beschikbaar. Het wordt ook makkelijker.
+					</aside>
+				</section>
+				<section>
+					<h1>skills</h1>
+					<blockquote>
+						<p>You need to be able to <b>find, manipulate, and store spatial</b> and non-spatial data. </p>
+						<p>You need to be able to design a <b>functional</b> and attractive cartographic representation of that data
+							as well as
+							the <b>UI controls</b> to operate it.
+						</p>
+						<p> You need to be able to implement that <b>design through code</b>. </p>
+					</blockquote>
+					<p><a href="https://www.axismaps.com/blog/2012/09/advice-to-the-aspiring-interactive-cartographer/">Axis
+							Maps</a></p>
+				</section>
+				<!-- 
+				
+				<section>
+					<img src="img/inspiration/creativity.jpeg" />
+				</section> -->
+
+				<!-- <section>
+					<blockquote>
+						<p>millions of bits of information on a single page. No other method for the display of
+							statisial information is so powerfull.</p>
+						<p> Edward R. Tufte</p>
+					</blockquote>
+				</section> -->
+				<!-- <section>
+					<img src="img/cartografie/visual_thinking_communication.png" />
+				</section> -->
+
+
+
+				<section>
+					<h1>Challenge</h1>
+					<p>For cartographers to code. Data driven, user interactivity</p>
+					<p>For developers to design a good map, think geo</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h1>All maps lie! </h1>
+					<img src="img/cartografie/trump.jpg" />
+				</section>
+				<section>
+					<blockquote>
+						<p>".. maps can visualize a lot of data quickly and effectively. But they can also visualize a
+							lot of
+							data inaccurately and misleadingly."</p>
+						<a href="https://www.citylab.com/design/2015/06/when-maps-lie/396761/">Citylab - when maps
+							lie</a>
+					</blockquote>
+				</section>
+				<section>
+					<img src="img/cartografie/wrong_map.jpg" />
+				</section>
+				<section>
+					<h1>Power of Beautiful maps</h1>
+					<blockquote>
+						<p>They stimulate both sides of our brain: the right side that’s
+							intuitive and aesthetic, and the left side that’s rational
+							and analytical. Maps are this wonderful combination of both.</p>
+						<p><a target="blank" href="http://learn.arcgis.com/en/arcgis-book/chapter3/">Allen Carroll</a>
+						</p>
+					</blockquote>
+				</section>
+
+				<!-- <section>
+					<h1>Bertin</h1>
+					<img src="img/cartografie/bertin.png" />
+				</section>
+
+				<section>
+					<p id="catphenom" class="table"> Categories of possible animations for dynamic phenomena. </p>
+
+					<small>
+						<table>
+							<tr>
+								<th> Change in domain </th>
+								<th> Variables </th>
+								<th> Dimensions </th>
+							</tr>
+							<tr>
+								<th rowspan="6"> Spatial </th>
+								<td> Appearance/disappearance </td>
+								<td> Born and Die </td>
+							</tr>
+							<tr>
+								<td rowspan="3"> Mutation </td>
+								<td> in size or shape </td>
+							</tr>
+							<tr>
+								<td> increase/decrease (interval ratio) </td>
+							</tr>
+							<tr>
+								<td> grow, shrink </td>
+							</tr>
+							<tr>
+								<td rowspan="2"> Movement </td>
+								<td>along trajectory </td>
+							</tr>
+							<tr>
+								<td>boundary shift </td>
+							</tr>
+
+							<tr>
+								<th rowspan="5"> Temporal </th>
+								<td> moment in time </td>
+							</tr>
+							<tr>
+								<td>Pace </td>
+							</tr>
+							<tr>
+								<td>Duration </td>
+							</tr>
+							<tr>
+								<td>Sequence </td>
+							</tr>
+							<tr>
+								<td>Frequency </td>
+							</tr>
+							<tr>
+								<th rowspan="2"> Thematic </th>
+								<td> Mutation </td>
+							</tr>
+							<tr>
+								<td>Thematic change </td>
+							</tr>
+						</table>
+					</small>
+				</section> -->
+
+				<section>
+					<blockquote>
+						<p>"IF you torture the data long enough, it will confess to anything."</p>
+						<p>Ronald Coase</p>
+					</blockquote>
+					<!-- <p>Whishfull thinking</p> -->
+				</section>
+				<section>
+					<img src="img/cartografie/Puntenwolk2.jpg" />
+				</section>
+				<section>
+					<h1>Easy mistakes .. </h1>
+
+				</section>
+				<section>
+					<h1>Choropleth map, be carefull.. </h1>
+					<p> do not map quantitaitve data using different hues </p>
+					<p>regions with bigger sizes tend to have a bigger weight in the map interpretation</p>
+					<p>Normalize!</p> 
+					<img src="img/cartografie/cbs.png" width="600" />
+					<p><a href="http://www-personal.umich.edu/~mejn/election/2012/">election maps</a>
+					<a href="https://www.data-to-viz.com/graph/choropleth.html">data to viz</a>
+					<a href="http://my.ilstu.edu/~jrcarter/Geo204/Choro/Tom/">Chloropleeth</a></p>
+				</section>
+				<section>
+					<h1> No more heatmaps! </h1>
+					<p>yes.. they look fancy but do not always show you the data.. </p>
+					<img src="img/cartografie/heatmapwrong.png" width="500px" />
+					<img src="img/cartografie/heatmap.png" width="300px" />
+					<p><a href="https://www.youtube.com/watch?v=IM4EFU6fWKk"> Presentation: Stop using heatmaps to
+							discover spatial patterns
+						</a></p>
+				</section>
+				<section>
+					<h1>Wrong classification</h1>
+					<img src="img/cartografie/moslims_percentage_2.png" width="450" />
+					<img src="img/cartografie/moslims_percentage.png" width="450" />
+					<p><a href="http://excelcharts.com/the-same-data-the-same-map-different-stories/">same data, same map,
+						different stories</a></p>
+				</section>
+				<section>
+					<h1> Tooo much data.. </h1>
+					<img src="https://media.giphy.com/media/3ohBV3swUjlLSwyaTm/giphy.gif" widht="100" />
+				</section>
+				<section>
+					<p>Coordinate precision</p>
+					<img src="img/geo/coordinate_precision.png"/>
+				</section>
+				<section>
+					<p> Make your map carefully </p>
+				</section>
+			</section>
+			<!-- End -->
+			<section>
+
+				<section>
+					<h1>The future .. Are maps necessary?</h1>
+					<img src="img/inspiratie/maps_will_be_dead.png">
+					<p><a href="https://www.justinobeirne.com/autonomous-vehicle-cartography#part-1"> Cartography in
+						the Age of Autonomous Vehicles - Justin oBerine</a>
+					<a href="http://www.roughtype.com/?p=6952">Are maps necessary? - Nicholas Carr</a>
+					<a href="">Car-tography - Niene</a></p>
+				</section>
+				<section>
+					<h1>Are we there yet? </h1>
+					<img src="img/inspiratie/are_we_there_yet.png" width = "500"/>
+					<p><a href="http://edition.cnn.com/travel/article/flight-maps-the-newest-airline-moneymaker/index.html">CNN
+						travel</a></p>
+					<aside class="notes"> Mensen willen weten waar ze zijn! Ook al vliegen ze niet zelf. </aside>
+				</section>
+				<section>
+					<h1> Maps are in! </h1>
+				</section>
+				<section>
+					<h1>Thank you!</h1>
+					<p>Feedback please?</p>
+					<p>Stay in touch or questions: </p>
+					<p><i>niene@webmapper.net</i></p>
+				</section>
+				<section>
+					<table>
+						<tr>
+							<td><a href="niene@webmapper.net"><i class="fa fa-envelope"> </i> niene@webmapper.net</a>
+							</td>
+						</tr>
+						<tr>
+							<td><a href="https://twitter.com/BNiene"><i class="fab fa-twitter-square">
+									</i> @BNiene</a></td>
+						</tr>
+						<tr>
+							<td><a href="https://github.com/NieneB/"><i class="fab fa-github"> </i> NieneB</a></td>
+						</tr>
+						<tr>
+							<td><a href="https://nieneb.nl/online-projects/"><i class="fa fa-link">
+									</i> NieneB.nl</a></td>
+						</tr>
+						<tr>
+							<td><a href="https://www.linkedin.com/in/niene-boeijen-24a8a429/"><i class="fab fa-linkedin"></i> Niene
+									Boeijen</a></td>
+						</tr>
+						<tr>
+							<td><a href="https://www.instagram.com/volvo_343_dl_1980/"><i class="fab fa-instagram">
+									</i> volvo_343_dl_1980</a></td>
+						</tr>
+					</table>
+
+				</section>
+			</section>
+		</div>
+	</div>
+	<script src="js/reveal.js"></script>
+
+	<script>
+		// More info about config & dependencies:
+		// - https://github.com/hakimel/reveal.js#configuration
+		// - https://github.com/hakimel/reveal.js#dependencies
+		Reveal.initialize({
+			slideNumber: false,
+			hash: true,
+			dependencies: [
+				{ src: 'plugin/markdown/marked.js' },
+				{ src: 'plugin/markdown/markdown.js' },
+				{ src: 'plugin/notes/notes.js', async: true },
+				{ src: 'plugin/highlight/highlight.js', async: true }
+			]
+		});
+	</script>
+</body>
+
+</html>
